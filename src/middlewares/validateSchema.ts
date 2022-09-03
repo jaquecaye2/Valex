@@ -5,7 +5,7 @@ export function validateSchema(schema: Schema) {
   return (request: Request, response: Response, next: NextFunction) => {
     const validation = schema.validate(request.body);
     if (validation.error) {
-      return response.sendStatus(422);
+      throw { code: "Unprocessable", message: "Erro nas informações enviadas" };
     }
 
     next();

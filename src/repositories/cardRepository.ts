@@ -1,5 +1,5 @@
-import { connection } from "../database.js";
-import { mapObjectToUpdateQuery } from "../utils/sqlUtils.js";
+import { connection } from "../database";
+import { mapObjectToUpdateQuery } from "../utils/sqlUtils";
 
 export type TransactionTypes =
   | "groceries"
@@ -19,7 +19,7 @@ export interface Card {
   isVirtual: boolean;
   originalCardId?: number;
   isBlocked: boolean;
-  type: TransactionTypes;
+  type: string;
 }
 
 export type CardInsertData = Omit<Card, "id">;
@@ -40,10 +40,10 @@ export async function findById(id: number) {
 }
 
 export async function findByTypeAndEmployeeId(
-  type: TransactionTypes,
+  type: string,
   employeeId: number
 ) {
-  const result = await connection.query<Card, [TransactionTypes, number]>(
+  const result = await connection.query(
     `SELECT * FROM cards WHERE type=$1 AND "employeeId"=$2`,
     [type, employeeId]
   );
@@ -102,7 +102,7 @@ export async function insert(cardData: CardInsertData) {
   );
 }
 
-export async function update(id: number, cardData: CardUpdateData) {
+/*export async function update(id: number, cardData: CardUpdateData) {
   const { objectColumns: cardColumns, objectValues: cardValues } =
     mapObjectToUpdateQuery({
       object: cardData,
@@ -117,7 +117,7 @@ export async function update(id: number, cardData: CardUpdateData) {
   `,
     [id, ...cardValues]
   );
-}
+}*/
 
 export async function remove(id: number) {
   connection.query<any, [number]>("DELETE FROM cards WHERE id=$1", [id]);

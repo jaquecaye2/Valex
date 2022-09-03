@@ -1,12 +1,13 @@
 import { Router } from "express";
-import { battle, ranking } from "../controllers/controller";
+import { createCard } from "../controllers/cardController";
 import { validateSchema } from "../middlewares/validateSchema";
-import { users } from "../schemas/users";
+import { validateCompany } from "../middlewares/validateCompany";
+import { validateEmployee } from "../middlewares/validateEmployee";
 
 const router = Router();
 
-router.post("/battle", validateSchema(users), battle)
+router.post("/create-card/:id/:type", validateCompany, validateEmployee, createCard)
 
-router.get("/ranking", ranking)
+
 
 export default router
