@@ -102,7 +102,7 @@ export async function insert(cardData: CardInsertData) {
   );
 }
 
-/*export async function update(id: number, cardData: CardUpdateData) {
+export async function update(id: number, cardData: CardUpdateData) {
   const { objectColumns: cardColumns, objectValues: cardValues } =
     mapObjectToUpdateQuery({
       object: cardData,
@@ -117,7 +117,7 @@ export async function insert(cardData: CardInsertData) {
   `,
     [id, ...cardValues]
   );
-}*/
+}
 
 export async function remove(id: number) {
   connection.query<any, [number]>("DELETE FROM cards WHERE id=$1", [id]);

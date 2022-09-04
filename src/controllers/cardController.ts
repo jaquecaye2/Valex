@@ -1,4 +1,5 @@
 import { Request, Response } from "express";
+import { activateCardService } from "../services/activateCardService";
 import { createCardService } from "../services/createCardService";
 
 export async function createCard(request: Request, response: Response) {
@@ -26,4 +27,19 @@ export async function createCard(request: Request, response: Response) {
 	}
 
   response.status(500).send()
+}
+
+export async function activateCard(request: Request, response: Response) {
+  const card: object = response.locals.infoCard;
+  const infoAddCard: object = request.body
+
+  const success = await activateCardService(card, infoAddCard);
+
+  /*if (success === "success") {
+		return response.status(200).send("Cartão criado com sucesso");
+	}
+
+  response.status(500).send()*/
+
+  response.status(200).send("Cartão ativado com sucesso")
 }
