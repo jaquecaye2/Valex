@@ -3,12 +3,12 @@
 ### Cartões:
  - Criação
      - Header: recebe uma "apikey" que é a chave de API da empresa
-     - Rota: recebe dois parâmetros:
+     - Rota: POST /create-card/:idEmployee/:type
         - idEmployee: id do colaborador --> para quem a empresa deseja criar o cartão 
         - type: tipo do cartão a ser criado --> deve ser: 'groceries', 'restaurant', 'transport', 'education', 'health'
     
  - Ativação de cartão
-    - Rota: id do cartão
+    - Rota: POST /activate-card/:id (id do cartão)
     - Body:
   {
     cvc: "031",
@@ -16,17 +16,17 @@
   }
     
  - Visualização de saldo e transações
-    - Rota: id do cartão
+    - Rota: GET /view-balance/:id (id do cartão)
  
  - Bloqueio de cartão
-    - Rota: id do cartão
+    - Rota: POST /block-card/:id (id do cartão)
     - Body:
   {
     password: "1234"
   }
  
  - Desbloqueio de cartão 
-    - Rota: id do cartão
+    - Rota: POST /unlock-card/:id (id do cartão)
     - Body:
   {
     password: "1234"
@@ -35,7 +35,7 @@
  ### Recargas
  
  - Recargas:
-     - Rota: id do cartão
+     - Rota: POST /recharge-card/:id (id do cartão)
      - Header: recebe uma "apikey" que é a chave de API da empresa
      - Body:
   {
@@ -44,7 +44,7 @@
  
  ### Compra em POS
  - Compras:
-     - Rota: id do cartão
+     - Rota: POST /purchase/:id (id do cartão)
      - Body:
 {
   password: "1234",
