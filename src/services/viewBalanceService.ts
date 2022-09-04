@@ -2,6 +2,13 @@ import { findByCardIdRecharge } from "../repositories/rechargeRepository";
 import { findByCardIdPayment } from "../repositories/paymentRepository";
 
 export async function viewBalanceService(card: any) {
+  if (card.isBlocked === true) {
+    throw {
+      code: "Unauthorized",
+      message: "Cartão bloqueado",
+    };
+  }
+  
   let resultRecharges = await findByCardIdRecharge(card.id);
 
   let totalRecharge: number = 0;

@@ -25,8 +25,6 @@ export async function activateCardService(card: any, infoAddCard: any) {
 
   const decryptCvc: string = cryptr.decrypt(cvc);
 
-  console.log(decryptCvc)
-
   if (decryptCvc !== infoAddCard.cvc) {
     throw {
       code: "Unauthorized",

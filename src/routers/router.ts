@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { createCard, activateCard, viewBalance, blockCard, unlockCard } from "../controllers/cardController";
 import { rechargeCard } from "../controllers/rechargeController"
-import { purchase } from "../controllers/purchaseController";
+import { purchase, purchaseOnline } from "../controllers/purchaseController";
 
 import { validateSchema } from "../middlewares/validateSchema";
 import { validateCompany } from "../middlewares/validateCompany";
@@ -12,6 +12,7 @@ import activateCardSchema from "../schemas/activateCardSchema";
 import passwordSchema from "../schemas/passwordSchema";
 import amountSchema from "../schemas/amountSchema";
 import purchaseSchema from "../schemas/purchaseSchema"
+import purchaseOnlineSchema from "../schemas/purchaseOnlineSchema";
 
 const router = Router();
 
@@ -28,5 +29,7 @@ router.post("/unlock-card/:id", validateCard, validateSchema(passwordSchema), un
 router.post("/recharge-card/:id", validateCompany, validateCard, validateSchema(amountSchema), rechargeCard)
 
 router.post("/purchase/:id", validateCard, validateSchema(purchaseSchema), purchase)
+
+router.post("/online-purchase/:id", validateCard, validateSchema(purchaseOnlineSchema), purchaseOnline)
 
 export default router
