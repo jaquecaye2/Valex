@@ -6,7 +6,7 @@ export async function validateEmployee(
   response: Response,
   next: NextFunction
 ) {
-  const idEmployees: any = request.params.id;
+  const idEmployees: any = request.params.idEmployee;
 
   const findEmployee = await findById(idEmployees);
 

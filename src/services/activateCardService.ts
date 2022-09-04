@@ -18,11 +18,14 @@ export async function activateCardService(card: any, infoAddCard: any) {
       message: "Cartão já está ativado",
     };
   }
+  
   const cvc: string = card.securityCode;
 
   const cryptr: any = new Cryptr("myTotallySecretKey");
 
   const decryptCvc: string = cryptr.decrypt(cvc);
+
+  console.log(decryptCvc)
 
   if (decryptCvc !== infoAddCard.cvc) {
     throw {
