@@ -45,12 +45,12 @@ $ git clone https://github.com/jaquecaye2/Valex.git
 # Instale as dependências
 $ npm install
 
-# Execute a aplicação em modo de desenvolvimento
-$ npm run dev
-
 # Informe a porta e a url para acesso ao banco de dados no arquivo .env
 const PORT = 4000;
 const DATABASE_URL = postgres://{user}:{password}@{hostname}:{port}/{database-name};
+
+# Execute a aplicação em modo de desenvolvimento
+$ npm run dev
 ```
 
 ### 🛠 Tecnologias
